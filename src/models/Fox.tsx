@@ -28,12 +28,14 @@ export const Fox = ({currentAnimation, ...props}: FoxProps) => {
     useEffect(() => {
         Object.values(actions).forEach(action => action.stop());
 
-        if(actions[currentAnimation]) {
+        if (actions[currentAnimation]) {
             actions[currentAnimation].play();
         }
     }, [actions, currentAnimation])
 
     return (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         <group ref={group} {...props} dispose={null}>
             <group name="Sketchfab_Scene">
                 <primitive object={nodes.GLTF_created_0_rootJoint}/>
