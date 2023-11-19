@@ -15,7 +15,7 @@ interface IslandProps {
     setCurrentStage: CallableFunction;
 }
 
-type ModelInteractionEvent = MouseEvent | TouchEvent;
+type ModelInteractionEvent = PointerEvent | TouchEvent;
 
 const defaultMouseEventHandler = (e: ModelInteractionEvent) => {
     e.stopPropagation();
@@ -86,8 +86,11 @@ export const Island = ({isRotating, setIsRotating, setCurrentStage, ...props}: I
     useEffect(() => {
         const canvas = gl.domElement;
         canvas.addEventListener('pointerup', handlePointerUp);
+        canvas.addEventListener('touchend', handlePointerUp);
         canvas.addEventListener('pointerdown', handlePointerDown);
+        canvas.addEventListener('touchstart', handlePointerDown);
         canvas.addEventListener('pointermove', handlePointerMove);
+        canvas.addEventListener('touchmove', handlePointerMove);
         document.addEventListener('keydown', handleKeyDown);
         document.addEventListener('keyup', handleKeyUp);
 
